@@ -13,4 +13,16 @@ link, the privacy statement (French and English) and the contact.*
 - Toute modification de la déclaration change la date « Dernière mise à jour » et ajoute une ligne à
   l'historique, au bas de la page.
 
+## Les fichiers
+
+| Fichier | Ce que c'est |
+|---|---|
+| `index.html` | la page ; ses styles sont dedans |
+| `mot.svg` | le mot MAPPENDIUM, composé (Fredoka, licence OFL) |
+| `motif-large-sol.svg`, `sol.webp` | la mer de nuages et, dans l'ouverture, le vrai sol du jeu : une capture de Québec, étalonnée, ses épingles aux vrais lieux |
+| `polices/` | IBM Plex Sans (400, 600) et Literata (600), sous-ensembles latins en WOFF2, avec leurs licences OFL à côté |
+
+Les polices sont sous [SIL Open Font License 1.1](https://openfontlicense.org/) ; chaque licence est dans `polices/`.
+Rien n'est généré par une IA : le mot et le motif sont tracés par script, le sol est une capture du jeu.
+
 Contact : <contact@mappendium.com>

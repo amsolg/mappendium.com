@@ -6,75 +6,128 @@
 <title>Mappendium</title>
 <meta name="description" content="Mappendium : un petit robot parcourt le monde pour en cataloguer chaque lieu. Un jeu idle calme. Déclaration de confidentialité et contact. / A calm idle game. Privacy statement and contact.">
 <link rel="canonical" href="https://mappendium.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2a10 10 0 0 0-10 10c0 7 10 18 10 18s10-11 10-18A10 10 0 0 0 16 2z' fill='%23FF6A4D'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%23FFF6E4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -116 100 124'%3E%3Cpath d='M0 0 L28.3 -62.6 A35 35 0 1 0 -28.3 -62.6 Z' fill='%23FF6A4D' stroke='%2317485A' stroke-width='10' stroke-linejoin='round' paint-order='stroke fill'/%3E%3Ccircle cx='0' cy='-81' r='14' fill='%23FFF6E4'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#A9DDF2">
 <style>
-:root { --ciel: #A9DDF2; --creme: #FFF6E4; --corail: #FF6A4D; --sarcelle: #17485A; --sapin: #2E7A55; }
-* { box-sizing: border-box; }
-html { background: var(--creme); }
-body { margin: 0; color: var(--sarcelle); background: var(--creme); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif; font-size: 1.0625rem; line-height: 1.65; }
-header { background: var(--ciel); padding: 3.5rem 1rem 3rem; text-align: center; }
-h1 { margin: 0; font-size: clamp(2.75rem, 9vw, 4.5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
-.accroche { max-width: 34rem; margin: 1.5rem auto 0; font-size: 1.2rem; line-height: 1.5; }
-.accroche + .accroche { margin-top: 1rem; font-size: 1.05rem; opacity: .85; }
-.langues { margin-top: 1.75rem; font-size: .95rem; }
-.langues a { margin: 0 .5rem; }
-main { max-width: 42rem; margin: 0 auto; padding: 0 1rem 2rem; }
-.langue { padding: 2.25rem 0 1rem; }
-.langue + .langue { border-top: 3px solid var(--ciel); }
-h2 { font-size: 1.45rem; margin: 1.75rem 0 .5rem; line-height: 1.25; }
-p { margin: .5rem 0 1rem; }
-a { color: var(--sarcelle); text-decoration-color: var(--corail); text-decoration-thickness: 2px; text-underline-offset: .18em; }
-a:hover, a:focus { color: var(--corail); }
-.steam { display: inline-block; padding: .45rem 1.1rem; border: 2px solid var(--sarcelle); border-radius: 999px; font-weight: 700; }
-footer { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; border-top: 3px solid var(--ciel); font-size: .92rem; opacity: .9; }
-footer p { margin: .4rem 0; }
+@font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url("polices/plex-sans-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:600;font-style:normal;font-display:swap;src:url("polices/plex-sans-600.woff2") format("woff2")}
+@font-face{font-family:"Literata";font-weight:600;font-style:normal;font-display:swap;src:url("polices/literata-600.woff2") format("woff2")}
+
+/* Mise en page : le mot et le motif portent l'identité ; Literata pour les titres, IBM Plex Sans pour le texte (charte §3). */
+:root{
+  --ciel:#A9DDF2; --ciel2:#E9F5F4; --creme:#FFF6E4; --corail:#FF6A4D; --sarcelle:#17485A; --sapin:#2E7A55; --blanc:#FFFFFF;
+  --encre:#17485A; --encre2:rgba(23,72,90,.76); --trait:rgba(23,72,90,.16); --fond:var(--creme);
+  --f-titre:"Literata",Georgia,"Times New Roman",serif;
+  --f-texte:"IBM Plex Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mesure:62ch;
+}
+*{box-sizing:border-box}
+html{background:var(--fond);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--f-texte);font-size:1.0625rem;line-height:1.65;font-feature-settings:"kern","liga"}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;font-family:var(--f-titre);font-weight:600;line-height:1.2;text-wrap:balance;letter-spacing:-.005em}
+p{margin:0}
+a{color:var(--encre);text-decoration:underline;text-decoration-color:var(--corail);text-decoration-thickness:2px;text-underline-offset:.16em}
+a:hover{color:var(--sarcelle);text-decoration-color:var(--sarcelle)}
+a:focus-visible,.pastille:focus-visible{outline:3px solid var(--corail);outline-offset:3px;border-radius:2px}
+.mot{width:100%;height:auto}
+h1{width:100%}
+.nb{white-space:nowrap}
+.pied .dates{display:flex;flex-wrap:wrap;gap:.4rem 2rem}
+.etiquette{font-family:var(--f-texte);font-weight:600;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--encre2)}
+.pastille{display:inline-flex;align-items:center;gap:.6em;font-weight:600;font-size:.98rem;line-height:1;padding:.85em 1.3em;border-radius:999px;background:var(--sarcelle);color:var(--creme);text-decoration:none;letter-spacing:.01em}
+.pastille .point{width:.55em;height:.55em;border-radius:50%;background:var(--corail);box-shadow:0 0 0 .22em rgba(255,246,228,.35)}
+.langues{display:flex;gap:1.4rem;font-weight:600;font-size:.95rem}
+.langues a{text-decoration:none;padding:.25rem 0;border-bottom:2px solid transparent}
+.langues a:hover,.langues a[aria-current="true"]{border-bottom-color:var(--corail)}
+.decl p,.contact p,.pied p{max-width:var(--mesure)}
+.decl h2,.contact h2{margin-bottom:.6rem}
+.decl p{font-size:1.02rem;line-height:1.7}
+.contact{margin-top:2.5rem}
+.contact p{line-height:1.75}
+.pied p{font-size:.92rem;line-height:1.6}
+.pied .historique{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:no-preference){a,.pastille{transition:color .12s,border-color .12s,background .12s}}
+
+
+/* D1 — Le ciel : l'affiche */
+.haut{position:relative;isolation:isolate;min-height:600px;display:grid;align-items:center;overflow:hidden;color:var(--encre)}
+.haut .motif{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;z-index:-1}
+.haut .barre{position:absolute;inset:0 0 auto 0;display:flex;justify-content:flex-end;align-items:center;gap:1.4rem;padding:1.1rem 1.5rem}
+.haut .cadre{width:min(1200px,100%);margin:0 auto;padding:5.5rem 1.5rem 3.5rem}
+.haut .texte{max-width:34rem;display:grid;gap:1.4rem;justify-items:start}
+.haut .mot{width:min(560px,100%)}
+.haut .accroche{font-family:var(--f-titre);font-size:clamp(1.3rem,1rem + 1.2vw,1.6rem);line-height:1.3;max-width:30ch;text-wrap:pretty}
+.haut .accroche-en{font-size:1.08rem;line-height:1.5;color:var(--encre2);max-width:48ch}
+main{width:min(1200px,100%);margin:0 auto;padding:1rem 1.5rem 2rem}
+.langue{padding:3.5rem 0 2rem;border-top:1px solid var(--trait)}
+.langue:first-child{border-top:0}
+.langue .etiquette{display:block;margin-bottom:1.6rem}
+.decl h2,.contact h2{font-size:1.55rem}
+.decl h2::before{content:"";display:block;width:2.4rem;height:3px;background:var(--corail);margin-bottom:1rem;border-radius:2px}
+.pied{background:var(--sarcelle);color:var(--creme);margin-top:2rem}
+.pied .cadre{width:min(1200px,100%);margin:0 auto;padding:2.6rem 1.5rem 3rem;display:grid;gap:1.2rem 3rem;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))}
+.pied a{color:var(--creme);text-decoration-color:var(--corail)}
+.pied .dates{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.4rem 2rem;padding-top:1rem;border-top:1px solid rgba(255,246,228,.22);font-size:.88rem;opacity:.9}
+@media (max-width:720px){
+  /* sur téléphone, la carte passe sous le texte : une bande, plus un fond */
+  .haut{min-height:0;display:flex;flex-direction:column;background:var(--ciel2)}
+  .haut .barre{position:static;order:0;padding:.9rem 1rem;justify-content:flex-start}
+  .haut .cadre{order:1;padding:1.2rem 1rem 2rem}
+  .haut .motif{position:static;order:2;height:250px;object-position:62% 50%}
+  .haut .mot{width:min(420px,92%)}
+  main{padding:0 1rem 1.5rem}
+  .langue{padding:2.5rem 0 1.5rem}
+  .pied .cadre{padding:2rem 1rem 2.4rem}
+}
+
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Mappendium</h1>
-  <p class="accroche">Un petit robot parcourt le monde pour en cataloguer chaque lieu, peut-être même votre rue.<br>Un jeu idle calme, à laisser tourner dans une fenêtre pendant que vous faites autre chose.</p>
-  <p class="accroche" lang="en">A small robot roams the world to catalogue every place in it, maybe even your own street.<br>A calm idle game to leave running in a window while you do other things.</p>
-  <nav class="langues" aria-label="Langues / Languages"><a href="#fr">Français</a> · <a href="#en" lang="en">English</a></nav>
+<header class="haut">
+  <img class="motif" src="motif-large-sol.svg" alt="" aria-hidden="true">
+  <nav class="barre langues" aria-label="Langues / Languages"><a href="#fr">Français</a><a href="#en" lang="en">English</a><a href="#fr-contact">Contact</a></nav>
+  <div class="cadre">
+    <div class="texte">
+      <h1><img class="mot" src="mot.svg" alt="Mappendium" width="902" height="118"></h1>
+      <p class="accroche">Un petit robot parcourt le monde pour en cataloguer chaque lieu, <span class="nb">peut-être</span> même votre rue.<br>Un jeu idle calme, à laisser tourner dans une fenêtre pendant que vous faites autre chose.</p>
+      <p class="accroche-en" lang="en">A small robot roams the world to catalogue every place in it, maybe even your own street. A calm idle game to leave running in a window while you do other things.</p>
+      <!-- MAP-115 : remplacer par <a class="pastille" href="https://store.steampowered.com/app/APPID/"><span class="point"></span>Mappendium sur Steam · on Steam</a> -->
+<p><span class="pastille"><span class="point" aria-hidden="true"></span>Bientôt sur Steam · Coming soon on Steam</span></p>
+    </div>
+  </div>
 </header>
-
 <main>
-
 <section class="langue" id="fr" lang="fr">
-  <!-- MAP-115 : quand la page Steam existe, remplacer le span par <a class="steam" href="https://store.steampowered.com/app/APPID/">Mappendium sur Steam</a> -->
-  <p><span class="steam">Bientôt sur Steam</span></p>
-
-  <section id="confidentialite-fr">
+  <span class="etiquette">Français</span>
+  
+  <section class="decl" id="confidentialite-fr">
     <h2>Confidentialité — Mappendium</h2>
     <p>Mappendium fonctionne entièrement hors ligne. Le jeu ne recueille, ne transmet et ne vend aucune donnée personnelle : il n'envoie rien sur Internet et ne contient ni publicité, ni outil de mesure d'audience, ni rapport de plantage automatique. Votre progression est enregistrée sur votre ordinateur. Lorsque Steam Cloud est activé dans Steam, Steam copie ce fichier de sauvegarde sur les serveurs de Valve pour que vous le retrouviez sur un autre ordinateur ; ce service, comme le reste de votre compte Steam, relève de la <a href="https://store.steampowered.com/privacy_agreement/">politique de confidentialité de Valve</a>. Si une version future ajoute une fonction qui transmet des données, par exemple des rapports de plantage, elle sera facultative, désactivée tant que vous ne l'aurez pas acceptée, et cette déclaration sera mise à jour avant sa sortie. Si vous nous écrivez, votre adresse courriel et votre message sont conservés dans notre messagerie le temps de vous répondre, et ne servent à rien d'autre. Responsable de la protection des renseignements personnels : le développeur de Mappendium, contact@mappendium.com. Dernière mise à jour : 2026-10-10.</p>
   </section>
-
-  <h2>Contact</h2>
-  <p>Pour toute question, y compris sur vos renseignements personnels : <a href="mailto:contact@mappendium.com">contact@mappendium.com</a>.<br>Responsable de la protection des renseignements personnels : le développeur de Mappendium.</p>
+  <section class="contact" id="fr-contact">
+    <h2>Contact</h2>
+    <p>Pour toute question, y compris sur vos renseignements personnels : <a href="mailto:contact@mappendium.com">contact@mappendium.com</a>.<br>Responsable de la protection des renseignements personnels : le développeur de Mappendium.</p>
+  </section>
 </section>
 
 <section class="langue" id="en" lang="en">
-  <!-- MAP-115: when the Steam page exists, replace the span with <a class="steam" href="https://store.steampowered.com/app/APPID/">Mappendium on Steam</a> -->
-  <p><span class="steam">Coming soon on Steam</span></p>
-
-  <section id="privacy-en">
+  <span class="etiquette">English</span>
+  
+  <section class="decl" id="privacy-en">
     <h2>Privacy — Mappendium</h2>
     <p>Mappendium runs entirely offline. The game does not collect, transmit or sell any personal data: it sends nothing over the Internet and contains no advertising, no analytics and no automatic crash reporting. Your progress is saved on your computer. When Steam Cloud is enabled in Steam, Steam copies that save file to Valve's servers so you can continue on another computer; that service, like the rest of your Steam account, is governed by <a href="https://store.steampowered.com/privacy_agreement/">Valve's privacy policy</a>. If a future version adds a feature that transmits data, such as crash reports, it will be optional, turned off until you agree to it, and this statement will be updated before that version is released. If you write to us, your email address and message are kept in our mailbox for as long as needed to reply, and used for nothing else. Person in charge of the protection of personal information: the developer of Mappendium, contact@mappendium.com. Last updated: 2026-10-10.</p>
   </section>
-
-  <h2>Contact</h2>
-  <p>For any question, including about your personal information: <a href="mailto:contact@mappendium.com">contact@mappendium.com</a>.<br>Person in charge of the protection of personal information: the developer of Mappendium.</p>
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>For any question, including about your personal information: <a href="mailto:contact@mappendium.com">contact@mappendium.com</a>.<br>Person in charge of the protection of personal information: the developer of Mappendium.</p>
+  </section>
 </section>
 
 </main>
-
-<footer>
-  <p>Ce site est une page fixe hébergée par GitHub Pages. Il ne dépose aucun témoin (cookie) et ne contient aucun outil de mesure d'audience. Comme tout hébergeur, GitHub journalise l'adresse IP des visiteurs à des fins de sécurité : voir la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">déclaration de confidentialité de GitHub</a>.</p>
-  <p lang="en">This site is a static page hosted by GitHub Pages. It sets no cookies and contains no analytics. Like any host, GitHub logs visitors' IP addresses for security purposes: see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
-  <p>Publié le 2026-10-10 · <span lang="en">Published 2026-10-10</span></p>
-  <p>Historique : 2026-10-10 — première publication. · <span lang="en">History: 2026-10-10 — first publication.</span></p>
-</footer>
-
+<footer class="pied"><div class="cadre"><p>Ce site est une page fixe hébergée par GitHub Pages. Il ne dépose aucun témoin (cookie) et ne contient aucun outil de mesure d'audience. Comme tout hébergeur, GitHub journalise l'adresse IP des visiteurs à des fins de sécurité : voir la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">déclaration de confidentialité de GitHub</a>.</p>
+<p lang="en">This site is a static page hosted by GitHub Pages. It sets no cookies and contains no analytics. Like any host, GitHub logs visitors' IP addresses for security purposes: see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+<div class="dates"><span>Publié le 2026-10-10 · <span lang="en">Published 2026-10-10</span></span><span class="historique">Historique : 2026-10-10 — première publication · <span lang="en">History: 2026-10-10 — first publication</span></span></div></div></footer>
 </body>
 </html>
