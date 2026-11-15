@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les données — Mappendium</title>
+<meta name="description" content="Les bases de données de Mappendium, dérivées d'OpenStreetMap, publiées gratuitement sous ODbL 1.0 : où les télécharger, comment les vérifier, leurs sources. / The databases of Mappendium, derived from OpenStreetMap, published free of charge under the ODbL 1.0.">
+<link rel="canonical" href="https://mappendium.com/donnees/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -116 100 124'%3E%3Cpath d='M0 0 L28.3 -62.6 A35 35 0 1 0 -28.3 -62.6 Z' fill='%23FF6A4D' stroke='%2317485A' stroke-width='10' stroke-linejoin='round' paint-order='stroke fill'/%3E%3Ccircle cx='0' cy='-81' r='14' fill='%23FFF6E4'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#A9DDF2">
+<style>
+@font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url("../polices/plex-sans-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:600;font-style:normal;font-display:swap;src:url("../polices/plex-sans-600.woff2") format("woff2")}
+@font-face{font-family:"Literata";font-weight:600;font-style:normal;font-display:swap;src:url("../polices/literata-600.woff2") format("woff2")}
+
+/* Les styles de la page d'accueil (index.html), repris : mêmes jetons, mêmes polices, même gabarit. */
+:root{
+  --ciel:#A9DDF2; --ciel2:#E9F5F4; --creme:#FFF6E4; --corail:#FF6A4D; --sarcelle:#17485A; --sapin:#2E7A55; --blanc:#FFFFFF;
+  --encre:#17485A; --encre2:rgba(23,72,90,.76); --trait:rgba(23,72,90,.16); --fond:var(--creme);
+  --f-titre:"Literata",Georgia,"Times New Roman",serif;
+  --f-texte:"IBM Plex Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-code:ui-monospace,"Cascadia Mono",Consolas,"DejaVu Sans Mono",monospace;
+  --mesure:62ch;
+}
+*{box-sizing:border-box}
+html{background:var(--fond);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--f-texte);font-size:1.0625rem;line-height:1.65;font-feature-settings:"kern","liga"}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;font-family:var(--f-titre);font-weight:600;line-height:1.2;text-wrap:balance;letter-spacing:-.005em}
+p,ul{margin:0}
+a{color:var(--encre);text-decoration:underline;text-decoration-color:var(--corail);text-decoration-thickness:2px;text-underline-offset:.16em;overflow-wrap:anywhere}
+a:hover{color:var(--sarcelle);text-decoration-color:var(--sarcelle)}
+a:focus-visible{outline:3px solid var(--corail);outline-offset:3px;border-radius:2px}
+.etiquette{font-family:var(--f-texte);font-weight:600;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--encre2)}
+.langues{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-weight:600;font-size:.95rem}
+.langues a{text-decoration:none;padding:.25rem 0;border-bottom:2px solid transparent}
+.langues a:hover{border-bottom-color:var(--corail)}
+@media (prefers-reduced-motion:no-preference){a{transition:color .12s,border-color .12s}}
+
+/* L'en-tête : une bande de ciel, le mot ramène à l'accueil */
+.haut{background:var(--ciel2);border-bottom:1px solid var(--trait)}
+.haut .barre{width:min(1200px,100%);margin:0 auto;display:flex;justify-content:flex-end;padding:1.1rem 1.5rem 0}
+.haut .cadre{width:min(1200px,100%);margin:0 auto;padding:1.6rem 1.5rem 2.6rem;display:grid;gap:1.1rem;justify-items:start}
+.haut .accueil{display:block;width:min(300px,70%)}
+.haut .mot{width:100%;height:auto}
+.haut h1{font-size:clamp(1.7rem,1.2rem + 1.8vw,2.4rem)}
+.haut .accroche{font-family:var(--f-titre);font-size:clamp(1.1rem,1rem + .6vw,1.3rem);line-height:1.35;max-width:46ch;text-wrap:pretty}
+.haut .accroche-en{font-size:1.02rem;line-height:1.5;color:var(--encre2);max-width:56ch}
+
+main{width:min(1200px,100%);margin:0 auto;padding:1rem 1.5rem 2rem}
+.langue{padding:3.5rem 0 2rem;border-top:1px solid var(--trait)}
+.langue:first-child{border-top:0}
+.langue .etiquette{display:block;margin-bottom:1.6rem}
+.bloc{max-width:var(--mesure);display:grid;gap:.85rem}
+.bloc + .bloc{margin-top:2.5rem}
+.bloc h2{font-size:1.55rem;margin-bottom:-.1rem}
+.bloc h2::before{content:"";display:block;width:2.4rem;height:3px;background:var(--corail);margin-bottom:1rem;border-radius:2px}
+.bloc ul{padding-left:1.2rem;display:grid;gap:.55rem}
+.bloc li{padding-left:.2rem}
+.mention{color:var(--encre2)}
+code{font-family:var(--f-code);font-size:.9em;overflow-wrap:anywhere}
+pre{margin:0;background:var(--sarcelle);color:var(--creme);border-radius:6px;padding:1rem 1.1rem;overflow-x:auto;max-width:100%}
+pre code{font-size:.86rem;line-height:1.6;overflow-wrap:normal;white-space:pre}
+.attribution{font-weight:600}
+
+.pied{background:var(--sarcelle);color:var(--creme);margin-top:2rem}
+.pied .cadre{width:min(1200px,100%);margin:0 auto;padding:2.6rem 1.5rem 3rem;display:grid;gap:1.2rem 3rem;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))}
+.pied p{max-width:var(--mesure);font-size:.92rem;line-height:1.6}
+.pied a{color:var(--creme);text-decoration-color:var(--corail)}
+@media (max-width:720px){
+  .haut .barre{justify-content:flex-start;padding:.9rem 1rem 0}
+  .haut .cadre{padding:1.2rem 1rem 2rem}
+  main{padding:0 1rem 1.5rem}
+  .langue{padding:2.5rem 0 1.5rem}
+  .pied .cadre{grid-template-columns:1fr;padding:2rem 1rem 2.4rem}
+}
+</style>
+</head>
+<body>
+
+<header class="haut">
+  <nav class="barre langues" aria-label="Langues / Languages"><a href="#fr">Français</a><a href="#en" lang="en">English</a><a href="#fr-contact">Contact</a></nav>
+  <div class="cadre">
+    <a class="accueil" href="../" aria-label="Mappendium — accueil / home"><img class="mot" src="../mot.svg" alt="Mappendium" width="902" height="118"></a>
+    <h1>Les données</h1>
+    <p class="accroche">Les bases de données géographiques livrées avec le jeu, dérivées d'OpenStreetMap, publiées gratuitement sous la licence ODbL&nbsp;1.0.</p>
+    <p class="accroche-en" lang="en">The geographic databases shipped with the game, derived from OpenStreetMap, published free of charge under the ODbL&nbsp;1.0.</p>
+  </div>
+</header>
+
+<main>
+<section class="langue" id="fr" lang="fr">
+  <span class="etiquette">Français</span>
+
+  <section class="bloc" id="fr-bases">
+    <h2>Les bases de données du jeu</h2>
+    <p>Mappendium est livré avec ses bases de données géographiques : les limites et les lieux, les routes, l'eau, l'occupation du sol, les bâtiments, le stationnement, l'électricité et la signalisation. Ce sont des bases dérivées d'OpenStreetMap, mêlées à des contenus d'autres sources (plus bas).</p>
+    <p>Elles sont mises à disposition sous la licence <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Data Commons Open Database License (ODbL) 1.0</a>, et seulement sous elle : vous pouvez les copier, les republier, les adapter et vous en servir, y compris commercialement, à condition de mentionner leur source et de partager à votre tour sous la même licence.</p>
+    <p class="attribution">Données cartographiques © les contributeurs d'OpenStreetMap — <a href="https://www.openstreetmap.org/copyright">openstreetmap.org/copyright</a>.</p>
+  </section>
+
+  <section class="bloc" id="fr-telecharger">
+    <h2>Les télécharger</h2>
+    <p>Les bases sont publiées gratuitement dans les <a href="https://github.com/amsolg/mappendium-donnees/releases">releases du dépôt public amsolg/mappendium-donnees</a>, sur GitHub. Chaque release porte les bases compressées en xz, le texte de la licence (<code>LICENCE-ODbL-1.0.txt</code>), un <code>README.md</code> — les fichiers, leurs tailles et leurs empreintes, la méthode, les sources — et <code>publication.json</code>, le même, lisible par machine.</p>
+  </section>
+
+  <section class="bloc" id="fr-verifier">
+    <h2>Recoller et vérifier</h2>
+    <p>Une base trop grande pour un seul fichier est publiée en parties (<code>&lt;base&gt;.xz.001</code>, <code>.002</code>…) d'un même flux xz : on les concatène dans l'ordre, puis on décompresse (xz, ou 7-Zip sous Windows). <code>SHA256SUMS</code> donne l'empreinte de chaque fichier publié ; <code>SHA256SUMS-bases</code>, celle de chaque base entière, recollée et décompressée.</p>
+<pre><code>sha256sum -c SHA256SUMS
+cat &lt;base&gt;.xz.0* &gt; &lt;base&gt;.xz
+xz -d &lt;base&gt;.xz
+sha256sum -c SHA256SUMS-bases</code></pre>
+    <p>Sous Windows, le recollage : <code>copy /b &lt;base&gt;.xz.001+&lt;base&gt;.xz.002 &lt;base&gt;.xz</code>, toutes les parties dans l'ordre. Une base en un seul fichier se décompresse directement : <code>xz -d -k &lt;base&gt;.xz</code>. Les noms exacts et les commandes de chaque base sont dans le <code>README.md</code> de la release.</p>
+  </section>
+
+  <section class="bloc" id="fr-sources">
+    <h2>Les sources et leurs licences</h2>
+    <p>Telles que les nomme l'avis livré avec le jeu (<code>Data/AVIS-DONNEES.txt</code>) :</p>
+    <ul>
+      <li>OpenStreetMap — ODbL 1.0 — © les contributeurs d'OpenStreetMap. Extraits Geofabrik : le Québec du 2026-06-23, les autres provinces et territoires du 2026-09-06.</li>
+      <li>Microsoft Canadian Building Footprints — ODbL 1.0 — des empreintes de bâtiments, fusionnées à celles d'OpenStreetMap.</li>
+      <li>Ressources naturelles Canada, Bâtiments extraits automatiquement — Licence du gouvernement ouvert – Canada 2.0 — des empreintes et leurs hauteurs LiDAR, reportées sur des bâtiments d'OpenStreetMap. <span class="mention">Contient de l'information visée par la Licence du gouvernement ouvert – Canada.</span></li>
+      <li>BDPPAD, Base de données des parcelles et productions agricoles déclarées — CC BY 4.0 — La Financière agricole du Québec ; les parcelles agricoles du Québec et leurs cultures, fusionnées à l'occupation du sol.</li>
+      <li>GeoNames (geonames.org) — CC BY 4.0 — la hiérarchie des pays et les identifiants des municipalités.</li>
+      <li>Natural Earth (naturalearthdata.com) — domaine public — les contours des pays.</li>
+      <li>Géoschéma M49 de la Division de statistique des Nations Unies (unstats.un.org) — les grandes régions du monde.</li>
+      <li>ESA WorldCover 2021 — CC BY 4.0 — le socle de couverture du sol. <span class="mention">© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium.</span></li>
+      <li>Copernicus GLO-30 — le relief, rééchantillonné : <span class="mention">produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.</span></li>
+    </ul>
+    <p>Le jeu tire aussi de ces bases des fichiers produits — les coquilles de bâtiments, l'image du socle, le relief — qui ne sont pas publiés dans les releases ; l'avis du jeu et le <code>README.md</code> de la release disent lesquels, et d'où ils viennent.</p>
+  </section>
+
+  <section class="bloc" id="fr-contact">
+    <h2>Contact</h2>
+    <p>Une question sur ces données : <a href="mailto:contact@mappendium.com">contact@mappendium.com</a>.</p>
+  </section>
+</section>
+
+<section class="langue" id="en" lang="en">
+  <span class="etiquette">English</span>
+
+  <section class="bloc" id="en-databases">
+    <h2>The game's databases</h2>
+    <p>Mappendium ships with its geographic databases: boundaries and places, roads, water, land cover, buildings, parking, power infrastructure and signage. They are derivative databases of OpenStreetMap, mixed with content from other sources (below).</p>
+    <p>They are made available under the <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Data Commons Open Database License (ODbL) 1.0</a>, and only under it: you may copy, republish, adapt and use them, commercially included, as long as you credit their source and share alike.</p>
+    <p class="attribution">Map data © OpenStreetMap contributors — <a href="https://www.openstreetmap.org/copyright">openstreetmap.org/copyright</a>.</p>
+  </section>
+
+  <section class="bloc" id="en-download">
+    <h2>Download</h2>
+    <p>The databases are published free of charge in the <a href="https://github.com/amsolg/mappendium-donnees/releases">releases of the public repository amsolg/mappendium-donnees</a>, on GitHub. Each release carries the databases compressed with xz, the licence text (<code>LICENCE-ODbL-1.0.txt</code>), a <code>README.md</code> (in French: the files, their sizes and checksums, the method, the sources) and <code>publication.json</code>, the same, machine-readable.</p>
+  </section>
+
+  <section class="bloc" id="en-verify">
+    <h2>Reassemble and verify</h2>
+    <p>A database too large for a single file is published in parts (<code>&lt;base&gt;.xz.001</code>, <code>.002</code>…) of one xz stream: concatenate them in order, then decompress (xz, or 7-Zip on Windows). <code>SHA256SUMS</code> gives the checksum of each published file; <code>SHA256SUMS-bases</code>, that of each whole database, reassembled and decompressed.</p>
+<pre><code>sha256sum -c SHA256SUMS
+cat &lt;base&gt;.xz.0* &gt; &lt;base&gt;.xz
+xz -d &lt;base&gt;.xz
+sha256sum -c SHA256SUMS-bases</code></pre>
+    <p>On Windows, to reassemble: <code>copy /b &lt;base&gt;.xz.001+&lt;base&gt;.xz.002 &lt;base&gt;.xz</code>, every part in order. A database in a single file decompresses directly: <code>xz -d -k &lt;base&gt;.xz</code>. The exact names and commands for each database are in the release's <code>README.md</code>.</p>
+  </section>
+
+  <section class="bloc" id="en-sources">
+    <h2>Sources and their licences</h2>
+    <p>As named by the notice shipped with the game (<code>Data/AVIS-DONNEES.txt</code>):</p>
+    <ul>
+      <li>OpenStreetMap — ODbL 1.0 — © OpenStreetMap contributors. Geofabrik extracts of 2026-06-23 for Québec, 2026-09-06 elsewhere.</li>
+      <li>Microsoft Canadian Building Footprints — ODbL 1.0 — building footprints, merged with those of OpenStreetMap.</li>
+      <li>Natural Resources Canada, Automatically Extracted Buildings — Open Government Licence – Canada 2.0 — footprints and their LiDAR heights, carried over to OpenStreetMap buildings. <span class="mention">Contains information licensed under the Open Government Licence – Canada.</span></li>
+      <li>BDPPAD, La Financière agricole du Québec — CC BY 4.0 — Québec's farm parcels and their crops, merged with the land cover.</li>
+      <li>GeoNames (geonames.org) — CC BY 4.0 — the country hierarchy and the identifiers of municipalities.</li>
+      <li>Natural Earth (naturalearthdata.com) — public domain — the country outlines.</li>
+      <li>The UN M49 geoscheme, United Nations Statistics Division (unstats.un.org) — the world's major regions.</li>
+      <li>ESA WorldCover 2021 — CC BY 4.0 — the land-cover base. <span class="mention">© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium.</span></li>
+      <li>Copernicus GLO-30 — the terrain, resampled: <span class="mention">produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.</span></li>
+    </ul>
+    <p>The game also produces files from these databases — the building shells, the land-cover floor image, the terrain — which are not published in the releases; the game's notice and the release's <code>README.md</code> say which, and where they come from.</p>
+  </section>
+
+  <section class="bloc" id="en-contact">
+    <h2>Contact</h2>
+    <p>A question about this data: <a href="mailto:contact@mappendium.com">contact@mappendium.com</a>.</p>
+  </section>
+</section>
+</main>
+
+<footer class="pied"><div class="cadre"><p>Ce site est une page fixe hébergée par GitHub Pages. Il ne dépose aucun témoin (cookie) et ne contient aucun outil de mesure d'audience. Comme tout hébergeur, GitHub journalise l'adresse IP des visiteurs à des fins de sécurité : voir la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">déclaration de confidentialité de GitHub</a>. <a href="../">Retour à l'accueil</a>.</p>
+<p lang="en">This site is a static page hosted by GitHub Pages. It sets no cookies and contains no analytics. Like any host, GitHub logs visitors' IP addresses for security purposes: see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. <a href="../">Back to the home page</a>.</p></div></footer>
+</body>
+</html>
