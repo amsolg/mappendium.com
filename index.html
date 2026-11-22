@@ -7,7 +7,21 @@
 <meta name="description" content="Mappendium est un jeu idle calme. Votre robot parcourt le monde pour en cataloguer chaque lieu, peut-être même votre rue. Déclaration de confidentialité et contact. / A calm idle game where your robot catalogs every place in the world. Privacy statement and contact.">
 <link rel="canonical" href="https://mappendium.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -116 100 124'%3E%3Cpath d='M0 0 L28.3 -62.6 A35 35 0 1 0 -28.3 -62.6 Z' fill='%23FF6A4D' stroke='%2317485A' stroke-width='10' stroke-linejoin='round' paint-order='stroke fill'/%3E%3Ccircle cx='0' cy='-81' r='14' fill='%23FFF6E4'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#A9DDF2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mappendium">
+<meta property="og:url" content="https://mappendium.com/">
+<meta property="og:title" content="Mappendium">
+<meta property="og:description" content="Mappendium est un jeu idle calme. Votre robot parcourt le monde pour en cataloguer chaque lieu, peut-être même votre rue. / A calm idle game where your robot catalogs every place in the world.">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://mappendium.com/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mappendium : Québec et le fleuve découverts, vus de haut, au milieu d'une mer de nuages, piqués d'épingles">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 @font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url("polices/plex-sans-400.woff2") format("woff2")}
 @font-face{font-family:"IBM Plex Sans";font-weight:600;font-style:normal;font-display:swap;src:url("polices/plex-sans-600.woff2") format("woff2")}
@@ -51,7 +65,9 @@ h1{width:100%}
 
 
 /* D1 — Le ciel : l'affiche */
-.haut{position:relative;isolation:isolate;min-height:600px;display:grid;align-items:center;overflow:hidden;color:var(--encre)}
+.haut{position:relative;isolation:isolate;min-height:max(600px,min(40vw,88vh));display:grid;align-items:center;overflow:hidden;color:var(--encre)}
+/* MAP-268 : l'en-tête grandit avec la largeur (plafonné à la hauteur de l'écran), pour que la carte du motif ne soit plus rognée
+   au-delà de 1920 px ; la mesure est à specs/2026-11-22-revision-site/. */
 .haut .motif{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;z-index:-1}
 .haut .barre{position:absolute;inset:0 0 auto 0;display:flex;justify-content:flex-end;align-items:center;gap:1.4rem;padding:1.1rem 1.5rem}
 .haut .cadre{width:min(1200px,100%);margin:0 auto;padding:5.5rem 1.5rem 3.5rem}
@@ -87,7 +103,17 @@ main{width:min(1200px,100%);margin:0 auto;padding:1rem 1.5rem 2rem}
 <body>
 
 <header class="haut">
-  <svg class="motif" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" preserveAspectRatio="xMaxYMid slice" role="img" aria-label="Une zone de carte dévoilée au milieu d'une mer de nuages, piquée d'épingles">
+  <nav class="barre langues" aria-label="Langues / Languages"><a href="#fr">Français</a><a href="#en" lang="en">English</a><a href="#fr-contact">Contact</a></nav>
+  <div class="cadre">
+    <div class="texte">
+      <h1><img class="mot" src="mot.svg" alt="Mappendium" width="902" height="118"></h1>
+      <p class="accroche">Votre robot parcourt le monde pour en cataloguer chaque lieu, <span class="nb">peut-être</span> même votre rue.<br>Un jeu idle calme, à laisser tourner dans une fenêtre pendant que vous faites autre chose.</p>
+      <p class="accroche-en" lang="en">Your robot roams the world to catalog every place in it, maybe even your own street. A calm idle game to leave running in a window while you do other things.</p>
+      <!-- MAP-115 : remplacer par <a class="pastille" href="https://store.steampowered.com/app/APPID/"><span class="point"></span>Mappendium sur Steam · on Steam</a> -->
+<p><span class="pastille"><span class="point" aria-hidden="true"></span>Bientôt sur Steam · Coming soon on Steam</span></p>
+    </div>
+  </div>
+  <svg class="motif" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" preserveAspectRatio="xMaxYMid slice">
 <defs>
 <filter id="fn" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="16"/></filter>
 <filter id="fd" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
@@ -424,16 +450,6 @@ main{width:min(1200px,100%);margin:0 auto;padding:1rem 1.5rem 2rem}
 <path d="M 1413.9 387.6 Q 1410.3 395.3 1406.4 402.6 Q 1402.5 409.9 1398.5 417.0 Q 1394.5 424.1 1390.6 430.9 Q 1386.7 437.8 1382.8 444.6 Q 1378.9 451.3 1374.9 458.0 Q 1370.9 464.6 1366.6 471.1 Q 1362.2 477.6 1357.4 483.9 Q 1352.5 490.2 1346.9 496.2 Q 1341.3 502.1 1334.9 507.6 Q 1328.6 513.1 1321.5 518.1 Q 1314.4 523.1 1306.8 527.6 Q 1299.1 532.1 1291.2 536.2 Q 1283.2 540.2 1275.2 544.1 Q 1267.2 547.9 1259.3 551.8 Q 1251.4 555.6 1243.7 559.7 Q 1235.9 563.8 1228.4 568.4 Q 1220.8 572.9 1213.2 578.0 Q 1205.6 583.0 1197.8 588.5 Q 1189.9 594.0 1181.5 599.7 Q 1173.1 605.4 1163.9 611.0 Q 1154.7 616.5 1144.6 621.5 Q 1134.6 626.4 1123.8 630.3 Q 1112.9 634.2 1101.5 636.7 Q 1090.0 639.2 1078.2 640.0 Q 1066.5 640.9 1054.8 640.1 Q 1043.1 639.2 1031.7 636.9 Q 1020.4 634.5 1009.6 630.9 Q 998.9 627.3 988.9 622.8 Q 978.8 618.2 969.4 613.3 Q 960.0 608.3 951.1 603.2 Q 942.1 598.1 933.5 593.1 Q 924.8 588.1 916.2 583.3 Q 907.6 578.6 898.9 574.0 Q 890.2 569.4 881.3 564.9 Q 872.5 560.4 863.6 555.8 Q 854.7 551.1 845.9 546.2 Q 837.2 541.3 828.8 535.9 Q 820.4 530.5 812.6 524.5 Q 804.8 518.6 797.8 512.1 Q 790.8 505.6 784.7 498.7 Q 778.6 491.7 773.4 484.3 Q 768.2 476.9 763.9 469.3 Q 759.6 461.6 756.1 453.7 Q 752.6 445.8 749.8 437.7 Q 747.1 429.6 745.1 421.4 Q 743.1 413.2 741.8 404.9 Q 740.6 396.7 740.4 388.3 Q 740.1 380.0 740.9 371.7 Q 741.8 363.4 743.8 355.2 Q 745.9 347.1 749.3 339.1 Q 752.7 331.2 757.3 323.6 Q 762.0 316.1 767.7 309.0 Q 773.5 301.9 780.2 295.3 Q 786.8 288.7 794.0 282.5 Q 801.1 276.4 808.5 270.7 Q 815.9 264.9 823.2 259.4 Q 830.6 253.9 837.7 248.6 Q 844.9 243.2 851.8 237.9 Q 858.8 232.5 865.7 227.2 Q 872.6 221.9 879.6 216.6 Q 886.7 211.4 894.1 206.4 Q 901.5 201.4 909.5 196.8 Q 917.5 192.3 926.2 188.5 Q 934.9 184.6 944.2 181.7 Q 953.5 178.8 963.4 176.8 Q 973.2 174.9 983.2 173.9 Q 993.3 172.9 1003.4 172.6 Q 1013.5 172.4 1023.4 172.6 Q 1033.3 172.8 1043.0 173.0 Q 1052.6 173.3 1062.0 173.2 Q 1071.4 173.2 1080.7 172.6 Q 1090.0 171.9 1099.5 170.5 Q 1109.0 169.1 1119.0 167.1 Q 1128.9 165.0 1139.6 162.4 Q 1150.2 159.8 1161.7 157.0 Q 1173.1 154.3 1185.4 151.9 Q 1197.6 149.5 1210.4 147.8 Q 1223.2 146.2 1236.2 145.7 Q 1249.2 145.2 1262.1 146.1 Q 1275.0 147.0 1287.3 149.4 Q 1299.7 151.8 1311.1 155.7 Q 1322.6 159.6 1332.9 164.8 Q 1343.2 170.0 1352.4 176.3 Q 1361.5 182.5 1369.5 189.6 Q 1377.4 196.7 1384.2 204.3 Q 1391.1 212.0 1396.9 220.0 Q 1402.7 228.0 1407.6 236.3 Q 1412.5 244.6 1416.5 253.0 Q 1420.4 261.5 1423.5 270.1 Q 1426.5 278.6 1428.5 287.3 Q 1430.4 296.0 1431.3 304.6 Q 1432.2 313.3 1431.9 322.0 Q 1431.6 330.6 1430.2 339.1 Q 1428.7 347.6 1426.3 355.8 Q 1423.9 364.1 1420.8 372.0 Q 1417.6 380.0 1413.9 387.6 Z" fill="none" stroke="#FFFFFF" stroke-width="110" opacity="0.75" filter="url(#fb)"/>
 </g>
 </svg>
-  <nav class="barre langues" aria-label="Langues / Languages"><a href="#fr">Français</a><a href="#en" lang="en">English</a><a href="#fr-contact">Contact</a></nav>
-  <div class="cadre">
-    <div class="texte">
-      <h1><img class="mot" src="mot.svg" alt="Mappendium" width="902" height="118"></h1>
-      <p class="accroche">Votre robot parcourt le monde pour en cataloguer chaque lieu, <span class="nb">peut-être</span> même votre rue.<br>Un jeu idle calme, à laisser tourner dans une fenêtre pendant que vous faites autre chose.</p>
-      <p class="accroche-en" lang="en">Your robot roams the world to catalog every place in it, maybe even your own street. A calm idle game to leave running in a window while you do other things.</p>
-      <!-- MAP-115 : remplacer par <a class="pastille" href="https://store.steampowered.com/app/APPID/"><span class="point"></span>Mappendium sur Steam · on Steam</a> -->
-<p><span class="pastille"><span class="point" aria-hidden="true"></span>Bientôt sur Steam · Coming soon on Steam</span></p>
-    </div>
-  </div>
 </header>
 <main>
 <section class="langue" id="fr" lang="fr">
@@ -463,8 +479,8 @@ main{width:min(1200px,100%);margin:0 auto;padding:1rem 1.5rem 2rem}
 </section>
 
 </main>
-<footer class="pied"><div class="cadre"><p>Ce site est une page fixe hébergée par GitHub Pages. Il ne dépose aucun témoin (cookie) et ne contient aucun outil de mesure d'audience. Comme tout hébergeur, GitHub journalise l'adresse IP des visiteurs à des fins de sécurité : voir la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">déclaration de confidentialité de GitHub</a>.</p>
-<p lang="en">This site is a static page hosted by GitHub Pages. It sets no cookies and contains no analytics. Like any host, GitHub logs visitors' IP addresses for security purposes: see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+<footer class="pied"><div class="cadre"><p>Ce site est fait de pages fixes, hébergées par GitHub Pages. Il ne dépose aucun témoin (cookie) et ne contient aucun outil de mesure d'audience. Comme tout hébergeur, GitHub journalise l'adresse IP des visiteurs à des fins de sécurité : voir la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">déclaration de confidentialité de GitHub</a>.</p>
+<p lang="en">This site is made of static pages hosted by GitHub Pages. It sets no cookies and contains no analytics. Like any host, GitHub logs visitors' IP addresses for security purposes: see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
 <p>Les bases de données du jeu, dérivées d'OpenStreetMap, se téléchargent sous la licence ODbL : <a href="donnees/">les données</a>. · <span lang="en">The game's databases, derived from OpenStreetMap, can be downloaded under the ODbL: <a href="donnees/">the data</a>.</span></p>
 <div class="dates"><span>Publié le 2026-10-10 · <span lang="en">Published 2026-10-10</span></span><span class="historique">Historique : 2026-10-10 — première publication · <span lang="en">History: 2026-10-10 — first publication</span></span></div></div></footer>
 </body>

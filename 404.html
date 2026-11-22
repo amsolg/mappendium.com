@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — Mappendium</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -116 100 124'%3E%3Cpath d='M0 0 L28.3 -62.6 A35 35 0 1 0 -28.3 -62.6 Z' fill='%23FF6A4D' stroke='%2317485A' stroke-width='10' stroke-linejoin='round' paint-order='stroke fill'/%3E%3Ccircle cx='0' cy='-81' r='14' fill='%23FFF6E4'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#A9DDF2">
+<style>
+@font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url("/polices/plex-sans-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:600;font-style:normal;font-display:swap;src:url("/polices/plex-sans-600.woff2") format("woff2")}
+@font-face{font-family:"Literata";font-weight:600;font-style:normal;font-display:swap;src:url("/polices/literata-600.woff2") format("woff2")}
+
+/* Les styles de la page d'accueil (index.html), repris : mêmes jetons, mêmes polices, même gabarit. */
+:root{
+  --ciel:#A9DDF2; --ciel2:#E9F5F4; --creme:#FFF6E4; --corail:#FF6A4D; --sarcelle:#17485A; --sapin:#2E7A55; --blanc:#FFFFFF;
+  --encre:#17485A; --encre2:rgba(23,72,90,.76); --trait:rgba(23,72,90,.16); --fond:var(--creme);
+  --f-titre:"Literata",Georgia,"Times New Roman",serif;
+  --f-texte:"IBM Plex Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-code:ui-monospace,"Cascadia Mono",Consolas,"DejaVu Sans Mono",monospace;
+  --mesure:62ch;
+}
+*{box-sizing:border-box}
+html{background:var(--fond);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--f-texte);font-size:1.0625rem;line-height:1.65;font-feature-settings:"kern","liga"}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;font-family:var(--f-titre);font-weight:600;line-height:1.2;text-wrap:balance;letter-spacing:-.005em}
+p,ul{margin:0}
+a{color:var(--encre);text-decoration:underline;text-decoration-color:var(--corail);text-decoration-thickness:2px;text-underline-offset:.16em;overflow-wrap:anywhere}
+a:hover{color:var(--sarcelle);text-decoration-color:var(--sarcelle)}
+a:focus-visible{outline:3px solid var(--corail);outline-offset:3px;border-radius:2px}
+.etiquette{font-family:var(--f-texte);font-weight:600;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--encre2)}
+.langues{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-weight:600;font-size:.95rem}
+.langues a{text-decoration:none;padding:.25rem 0;border-bottom:2px solid transparent}
+.langues a:hover{border-bottom-color:var(--corail)}
+@media (prefers-reduced-motion:no-preference){a{transition:color .12s,border-color .12s}}
+
+/* L'en-tête : une bande de ciel, le mot ramène à l'accueil */
+.haut{background:var(--ciel2);border-bottom:1px solid var(--trait)}
+.haut .barre{width:min(1200px,100%);margin:0 auto;display:flex;justify-content:flex-end;padding:1.1rem 1.5rem 0}
+.haut .cadre{width:min(1200px,100%);margin:0 auto;padding:1.6rem 1.5rem 2.6rem;display:grid;gap:1.1rem;justify-items:start}
+.haut .accueil{display:block;width:min(300px,70%)}
+.haut .mot{width:100%;height:auto}
+.haut h1{font-size:clamp(1.7rem,1.2rem + 1.8vw,2.4rem)}
+.haut .accroche{font-family:var(--f-titre);font-size:clamp(1.1rem,1rem + .6vw,1.3rem);line-height:1.35;max-width:46ch;text-wrap:pretty}
+.haut .accroche-en{font-size:1.02rem;line-height:1.5;color:var(--encre2);max-width:56ch}
+
+main{width:min(1200px,100%);margin:0 auto;padding:1rem 1.5rem 2rem}
+.langue{padding:3.5rem 0 2rem;border-top:1px solid var(--trait)}
+.langue:first-child{border-top:0}
+.langue .etiquette{display:block;margin-bottom:1.6rem}
+.bloc{max-width:var(--mesure);display:grid;gap:.85rem}
+.bloc + .bloc{margin-top:2.5rem}
+.bloc h2{font-size:1.55rem;margin-bottom:-.1rem}
+.bloc h2::before{content:"";display:block;width:2.4rem;height:3px;background:var(--corail);margin-bottom:1rem;border-radius:2px}
+.bloc ul{padding-left:1.2rem;display:grid;gap:.55rem}
+.bloc li{padding-left:.2rem}
+.mention{color:var(--encre2)}
+code{font-family:var(--f-code);font-size:.9em;overflow-wrap:anywhere}
+pre{margin:0;background:var(--sarcelle);color:var(--creme);border-radius:6px;padding:1rem 1.1rem;overflow-x:auto;max-width:100%}
+pre code{font-size:.86rem;line-height:1.6;overflow-wrap:normal;white-space:pre}
+.attribution{font-weight:600}
+
+.pied{background:var(--sarcelle);color:var(--creme);margin-top:2rem}
+.pied .cadre{width:min(1200px,100%);margin:0 auto;padding:2.6rem 1.5rem 3rem;display:grid;gap:1.2rem 3rem;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))}
+.pied p{max-width:var(--mesure);font-size:.92rem;line-height:1.6}
+.pied a{color:var(--creme);text-decoration-color:var(--corail)}
+@media (max-width:720px){
+  .haut .barre{justify-content:flex-start;padding:.9rem 1rem 0}
+  .haut .cadre{padding:1.2rem 1rem 2rem}
+  main{padding:0 1rem 1.5rem}
+  .langue{padding:2.5rem 0 1.5rem}
+  .pied .cadre{grid-template-columns:1fr;padding:2rem 1rem 2.4rem}
+}
+</style>
+</head>
+<body>
+
+<header class="haut">
+  <div class="cadre">
+    <a class="accueil" href="/" aria-label="Mappendium — accueil / home"><img class="mot" src="/mot.svg" alt="Mappendium" width="902" height="118"></a>
+    <h1>Cette page n'existe pas.</h1>
+    <p class="accroche-en" lang="en">This page doesn't exist.</p>
+    <p><a href="/">Retour à l'accueil</a> · <a href="/" lang="en">Back to the home page</a></p>
+  </div>
+</header>
+
+</body>
+</html>
